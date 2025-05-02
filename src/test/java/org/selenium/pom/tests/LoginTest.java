@@ -1,5 +1,4 @@
 package org.selenium.pom.tests;
-
 import io.restassured.http.Cookies;
 import org.selenium.pom.api.actions.CartApi;
 import org.selenium.pom.api.actions.SignupApi;
@@ -8,10 +7,10 @@ import org.selenium.pom.pages.AccountPage;
 import org.selenium.pom.pages.CheckoutPage;
 import org.selenium.pom.pojo.Product;
 import org.selenium.pom.pojo.User;
+import org.selenium.pom.utils.ConfigLoader;
 import org.selenium.pom.utils.FakerUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.io.IOException;
 
 public class LoginTest extends BaseTest {
@@ -37,10 +36,11 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void shouldNotLoginWithAnInvalidPassword(){
+
         User user = User.builder()
-                .username("chica" + new FakerUtils().generateRandomNumber())
-                .password("changito")
-                .email("chica" + new FakerUtils().generateRandomNumber() + "@gmail.com")
+                .username(ConfigLoader.getInstance().getUsername() + new FakerUtils().generateRandomNumber())
+                .password(ConfigLoader.getInstance().getPassword())
+                .email(ConfigLoader.getInstance().getUsername() + new FakerUtils().generateRandomNumber() + "@gmail.com")
                 .build();
         new SignupApi().register(user);
 

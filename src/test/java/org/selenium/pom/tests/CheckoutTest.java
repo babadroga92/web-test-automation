@@ -3,7 +3,6 @@ import io.restassured.http.Cookies;
 import org.selenium.pom.api.actions.CartApi;
 import org.selenium.pom.api.actions.SignupApi;
 import org.selenium.pom.base.BaseTest;
-import org.selenium.pom.pages.CartPage;
 import org.selenium.pom.pages.CheckoutPage;
 import org.selenium.pom.pojo.BillingAddress;
 import org.selenium.pom.pojo.Product;
@@ -12,7 +11,6 @@ import org.selenium.pom.utils.FakerUtils;
 import org.selenium.pom.utils.JacksonUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.io.IOException;
 
 public class CheckoutTest extends BaseTest {

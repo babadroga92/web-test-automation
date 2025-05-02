@@ -1,5 +1,4 @@
 package org.selenium.pom.tests;
-
 import org.selenium.pom.base.BaseTest;
 import org.selenium.pom.pages.ProductPage;
 import org.selenium.pom.pages.StorePage;
@@ -7,7 +6,6 @@ import org.selenium.pom.pojo.Product;
 import org.selenium.pom.utils.FakerUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.io.IOException;
 
 public class SearchTest extends BaseTest {
