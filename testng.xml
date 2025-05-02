@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Suite1" verbose="1" parallel="tests">
+    <test name="Chrome" thread-count="10" parallel="methods">
+        <parameter name="browser" value="CHROME"/>
+            <packages>
+                <package name="org.selenium.pom.tests"></package>
+            </packages>
+<!--        <classes>-->
+<!--            <class name="org.selenium.pom.tests.UITest"/>-->
+<!--        </classes>-->
+    </test>
+    <test name="Firefox" parallel="methods">
+        <parameter name="browser" value="FIREFOX"/>
+        <packages>
+            <package name="org.selenium.pom.tests"/>
+        </packages>
+    </test>
+</suite>
