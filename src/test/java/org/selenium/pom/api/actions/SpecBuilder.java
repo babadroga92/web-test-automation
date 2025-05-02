@@ -12,13 +12,13 @@ public class SpecBuilder {
     public static RequestSpecification getRequestSpec(){
         return new RequestSpecBuilder()
                 .setBaseUri(ConfigLoader.getInstance().getBaseUrl())
-                .log(LogDetail.ALL)
+                .log(LogDetail.HEADERS)
                 .build();
     }
 
     public static ResponseSpecification getResponseSpec(){
         return new ResponseSpecBuilder()
-                .log(LogDetail.ALL)
+                .log(LogDetail.STATUS)
                 .build();
     }
 }

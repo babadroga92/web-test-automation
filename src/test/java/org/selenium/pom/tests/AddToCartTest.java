@@ -7,7 +7,6 @@ import org.selenium.pom.pages.StorePage;
 import org.selenium.pom.pojo.Product;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.io.IOException;
 
 public class AddToCartTest extends BaseTest {
@@ -23,12 +22,10 @@ public class AddToCartTest extends BaseTest {
     }
 
     @Test(dataProvider = "getFeaturedProducts", dataProviderClass = MyDataProvider.class)
-    public void addToCartFeaturedProducts(Product product){
+    public void addToCartFeaturedProducts(Product product) {
         CartPage cartPage = new HomePage(getDriver()).load()
                 .getProductThumbnail()
                 .clickAddToCartButton(product.getName()).clickViewCartButton();
         Assert.assertEquals(cartPage.getProductText(), product.getName());
     }
-
-
 }
