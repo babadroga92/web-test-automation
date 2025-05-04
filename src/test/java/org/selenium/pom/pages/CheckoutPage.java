@@ -27,7 +27,7 @@ public class CheckoutPage extends BasePage {
     private final By directBankTransferRadioBtn = By.id("payment_method_bacs");
     private final By productName = By.cssSelector("td[class='product-name']");
     private final By cashOnDeliveryRadioBtn = By.id("payment_method_cod");
-
+    private final By orderNumber = By.cssSelector("li[class='woocommerce-order-overview__order order'] strong");
     public CheckoutPage(WebDriver driver) {
         super(driver);
     }
@@ -178,5 +178,8 @@ public class CheckoutPage extends BasePage {
 
     public String getProductName(){
        return waitShort.until(ExpectedConditions.visibilityOfElementLocated(productName)).getText();
+    }
+    public String getOrderNumber(){
+        return waitShort.until(ExpectedConditions.visibilityOfElementLocated(orderNumber)).getText();
     }
 }
