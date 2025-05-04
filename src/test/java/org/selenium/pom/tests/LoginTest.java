@@ -26,24 +26,20 @@ public class LoginTest extends BaseTest {
         CartApi cartApi = new CartApi(new Cookies());
         Product product = new Product(1215);
         cartApi.addToCart(product.getId(), 3);
-        CheckoutPage checkoutPage = new CheckoutPage(getDriver())
-                .load();
         injectCookiesToBrowser(cartApi.getCookies());
-        checkoutPage.load().loginLink()
+        CheckoutPage checkoutPage = new CheckoutPage(getDriver()).load().loginLink()
                         .login(user);
         Assert.assertTrue(checkoutPage.getProductName().contains(product.getName()));
     }
 
     @Test
     public void shouldNotLoginWithAnInvalidPassword(){
-
         User user = User.builder()
                 .username(ConfigLoader.getInstance().getUsername() + new FakerUtils().generateRandomNumber())
                 .password(ConfigLoader.getInstance().getPassword())
                 .email(ConfigLoader.getInstance().getUsername() + new FakerUtils().generateRandomNumber() + "@gmail.com")
                 .build();
         new SignupApi().register(user);
-
         AccountPage accountPage = new AccountPage(getDriver()).load();
         accountPage.login(user.getUsername(), "invalid_password");
         Assert.assertEquals(accountPage.getErrorTxt(), "Error: The password you entered for the username "

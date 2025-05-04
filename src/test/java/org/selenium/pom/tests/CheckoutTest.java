@@ -18,14 +18,10 @@ public class CheckoutTest extends BaseTest {
     @Test
     public void guestCheckoutUsingDirectBankTransfer() throws IOException {
         BillingAddress guestUsers = JacksonUtils.deserializedJson("guestUsers.json", BillingAddress.class);
-        CheckoutPage checkoutPage = new CheckoutPage(getDriver()).load();
-
         CartApi cartApi = new CartApi(new Cookies());
         cartApi.addToCart(1215, 1);
-
         injectCookiesToBrowser(cartApi.getCookies());
-
-        checkoutPage.load()
+        CheckoutPage checkoutPage = new CheckoutPage(getDriver()).load()
                 .setBillingAddress(guestUsers)
                 .selectDirectBankTransfer()
                 .placeOrder();
@@ -34,14 +30,10 @@ public class CheckoutTest extends BaseTest {
     @Test
     public void guestCheckoutUsingCashOnDelivery() throws IOException, InterruptedException {
         BillingAddress guestUsers = JacksonUtils.deserializedJson("guestUsers.json", BillingAddress.class);
-        CheckoutPage checkoutPage = new CheckoutPage(getDriver()).load();
-
         CartApi cartApi = new CartApi(new Cookies());
         cartApi.addToCart(1215, 1);
-
         injectCookiesToBrowser(cartApi.getCookies());
-
-        checkoutPage.load()
+        CheckoutPage checkoutPage = new CheckoutPage(getDriver()).load()
                 .setBillingAddress(guestUsers)
                 .selectCashOnDelivery()
                 .placeOrder();
@@ -61,10 +53,8 @@ public class CheckoutTest extends BaseTest {
         CartApi cartApi = new CartApi(signupApi.getCookies());
         Product product = new Product(1215);
         cartApi.addToCart(product.getId(), 1);
-
-        CheckoutPage checkoutPage = new CheckoutPage(getDriver()).load();
         injectCookiesToBrowser(signupApi.getCookies());
-        checkoutPage.load()
+        CheckoutPage checkoutPage = new CheckoutPage(getDriver()).load()
                 .setBillingAddress(existingUser)
                 .selectDirectBankTransfer()
                 .placeOrder();
@@ -80,14 +70,11 @@ public class CheckoutTest extends BaseTest {
                 .build();
         SignupApi signupApi = new SignupApi();
         signupApi.register(user);
-
         CartApi cartApi = new CartApi(signupApi.getCookies());
         Product product = new Product(1215);
         cartApi.addToCart(product.getId(), 1);
-
-        CheckoutPage checkoutPage = new CheckoutPage(getDriver()).load();
         injectCookiesToBrowser(signupApi.getCookies());
-        checkoutPage.load()
+        CheckoutPage checkoutPage = new CheckoutPage(getDriver()).load()
                 .setBillingAddress(existingUser)
                 .selectCashOnDelivery()
                 .placeOrder();
