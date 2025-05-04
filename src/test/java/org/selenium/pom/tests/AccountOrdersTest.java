@@ -30,9 +30,8 @@ public class AccountOrdersTest extends BaseTest {
         CartApi cartApi = new CartApi(new Cookies());
         Product product = new Product(1215);
         cartApi.addToCart(product.getId(), 3);
-        CheckoutPage checkoutPage = new CheckoutPage(getDriver()).load();
         injectCookiesToBrowser(cartApi.getCookies());
-        checkoutPage.load()
+        CheckoutPage checkoutPage = new CheckoutPage(getDriver()).load()
                 .loginLink()
                 .login(user)
                 .setBillingAddress(guestUsers)

@@ -7,6 +7,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.selenium.pom.factory.DriverManager;
+import org.selenium.pom.pages.HomePage;
 import org.selenium.pom.utils.CookieUtils;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -48,6 +49,7 @@ public class BaseTest {
     }
 
     public void injectCookiesToBrowser(Cookies cookies){
+        HomePage homePage = new HomePage(getDriver()).load();
         List<Cookie> seleniumCookies = new  CookieUtils().convertRestAssuredCookiesToSeleniumCookies(cookies);
         for(Cookie cookie : seleniumCookies){
             getDriver().manage().addCookie(cookie);
