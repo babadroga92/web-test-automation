@@ -26,7 +26,6 @@ This project is a hybrid test automation framework built with **Selenium WebDriv
 
 ---
 
-![Build Status](http://localhost:8080/job/web-test-automation/5/badge/icon)
 
 
 
