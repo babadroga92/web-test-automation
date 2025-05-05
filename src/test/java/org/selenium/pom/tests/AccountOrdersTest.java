@@ -1,4 +1,5 @@
 package org.selenium.pom.tests;
+import io.qameta.allure.Description;
 import io.restassured.http.Cookies;
 import org.selenium.pom.api.actions.CartApi;
 import org.selenium.pom.api.actions.SignupApi;
@@ -17,7 +18,8 @@ import java.io.IOException;
 
 public class AccountOrdersTest extends BaseTest {
 
-    @Test
+    @Test(description = "Verify that a user can place an order and see it listed in their account's order history.")
+    @Description("This test verifies that after a user places an order, the order is successfully listed in their account's order history and the order number matches the one received during checkout.")
     public void shouldBeAbleToSeeExistingOrder() throws IOException, InterruptedException {
         BillingAddress guestUsers = JacksonUtils.deserializedJson("guestUsers.json", BillingAddress.class);
         User user = User.builder()

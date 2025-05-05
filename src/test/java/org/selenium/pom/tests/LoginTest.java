@@ -1,4 +1,8 @@
 package org.selenium.pom.tests;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import io.restassured.http.Cookies;
 import org.selenium.pom.api.actions.CartApi;
 import org.selenium.pom.api.actions.SignupApi;
@@ -13,8 +17,13 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.io.IOException;
 
+@Epic("Login")
+@Feature("User Login from Checkout and Account Page")
 public class LoginTest extends BaseTest {
-    @Test
+
+    @Test(description = "Verify that a user can log in during the checkout process and see their cart items correctly.")
+    @Story("Login during checkout")
+    @Description("This test verifies that a user can log in during the checkout process and their cart items are correctly displayed.")
     public void loginDuringCheckout() throws IOException {
         User user = User.builder()
                 .username("lorena" + new FakerUtils().generateRandomNumber())
@@ -32,7 +41,9 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(checkoutPage.getProductName().contains(product.getName()));
     }
 
-    @Test
+    @Test(description = "Verify that the system shows an appropriate error message when a user tries to log in with an invalid password.")
+    @Story("Login with invalid credentials")
+    @Description("This test ensures that the system displays an error message when a user tries to log in with an invalid password.")
     public void shouldNotLoginWithAnInvalidPassword(){
         User user = User.builder()
                 .username(ConfigLoader.getInstance().getUsername() + new FakerUtils().generateRandomNumber())
@@ -45,7 +56,9 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(accountPage.getErrorTxt(), "Error: The password you entered for the username "
                 + user.getUsername() + " is incorrect. Lost your password?");
     }
-    @Test
+    @Test(description = "Verify that the system shows an appropriate error message when a user tries to log in with a non-existing username.")
+    @Story("Login with non-existing user")
+    @Description("This test verifies that the system displays an error message when a user tries to log in with a non-existing username.")
     public void shouldNotLoginWithANonExistingUser(){
         User user = User.builder()
                 .username("lorenita89")

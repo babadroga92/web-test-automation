@@ -13,8 +13,5 @@
         <packages>
             <package name="org.selenium.pom.tests"/>
         </packages>
-<!--        <classes>-->
-<!--            <class name="org.selenium.pom.tests.AddToCartTest"/>-->
-<!--        </classes>-->
     </test>
 </suite>
